@@ -1,19 +1,20 @@
 .global draw_triangle
 draw_triangle:
-addi $v0,$zero, 5
-syscall
+
 addi $t0, $zero, 0
-add $t1, $zero, $v0
+move $a1, $a0
 ;addi $t1,$t1,1
 ;addi $t6, $zero,1
 start_loop1:
 
-  beq $t0,$t1, end1
+  beq $t0,$a1, end1
   addi $t2,$zero,1
-  sub $t3,$t1,$t0
+  sub $t3,$a1,$t0
+ 
 
   addi $v0,$zero,11
   addi $a0,$zero,32
+
 loop2:
   beq $t2,$t3,end2
   syscall
@@ -31,7 +32,7 @@ syscall
 addi $t2, $t2,-1
 loop3:
   beq $t2, $zero, end3
-addi $t7, $t1,-1
+addi $t7, $a1,-1
 bne $t0, $t7, ex2
 addi $v0, $zero,11
   addi $a0,$zero,42
@@ -50,7 +51,7 @@ addiu $t6, $t0,-1
 
 loop4:
   beq $t6,$t2,end4
-addi $t7, $t1,-1
+addi $t7, $a1,-1
 bne $t0, $t7, ex
 addi $v0, $zero,11
   addi $a0,$zero,42
@@ -77,4 +78,5 @@ addi $t0, $t0,1
 
 j start_loop1
 end1:
+
     jr $ra
